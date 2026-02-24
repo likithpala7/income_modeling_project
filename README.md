@@ -17,6 +17,7 @@ income_modeling_project/
 │   ├── classification.py
 │   └── segmentation.py
 ├── requirements.txt
+├── Income_Modeling_Project.pdf
 └── README.md
 ```
 
