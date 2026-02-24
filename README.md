@@ -75,7 +75,7 @@ source venv/bin/activate
 
 **Windows:**
 ```bash
-venv\Scripts\activate
+source venv/Scripts/activate
 ```
 
 Once activated, your terminal prompt will show `(venv)` at the beginning.
@@ -93,7 +93,7 @@ pip install -r requirements.txt
 From the project root directory, run:
 
 ```bash
-python src/classification.py
+python src/classification_model.py
 ```
 
 **Expected output:**
@@ -106,7 +106,7 @@ The script will print progress updates as it loads and preprocesses the data, tr
 From the project root directory, run:
 
 ```bash
-python src/segmentation.py
+python src/segmentation_model.py
 ```
 
 **Expected output:**

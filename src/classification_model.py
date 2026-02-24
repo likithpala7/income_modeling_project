@@ -44,7 +44,7 @@ def select_features(df):
         "weeks worked in year",
         "dividends from stocks",
         "num persons worked for employer",
-        # Original categorical
+        # categorical
         "education",
         "sex",
         "tax filer stat",
