@@ -9,7 +9,7 @@ This project trains an income classification model and a customer segmentation m
 ## Repository Structure
 
 ```
-census-income/
+income_modeling_project/
 ├── data/
 │   ├── census-bureau.data
 │   └── census-bureau.columns
@@ -57,7 +57,7 @@ git clone <repository-url>
 ### 2. Navigate into the project directory
 
 ```bash
-cd census-income
+cd income_modeling_project
 ```
 
 ### 3. Create a virtual environment using Python 3.12.4
