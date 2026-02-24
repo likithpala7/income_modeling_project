@@ -51,7 +51,7 @@ mv census-bureau.columns data/
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/likithpala7/income_modeling_project.git
 ```
 
 ### 2. Navigate into the project directory
