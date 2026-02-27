@@ -19,6 +19,7 @@ income_modeling_project/
 ├── eda_classification.ipynb
 ├── segmentation_experiments.ipynb
 ├── requirements.txt
+├── Income_Modeling_Project.pdf
 └── README.md
 ```
 
