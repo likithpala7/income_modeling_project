@@ -84,7 +84,7 @@ source venv/bin/activate
 
 **Windows:**
 ```bash
-venv\Scripts\activate
+source venv/Scripts/activate
 ```
 
 Once activated, your terminal prompt will show `(venv)` at the beginning.
