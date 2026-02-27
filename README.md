@@ -14,11 +14,19 @@ income_modeling_project/
 │   ├── census-bureau.data
 │   └── census-bureau.columns
 ├── src/
-│   ├── classification.py
-│   └── segmentation.py
+│   ├── classification_model.py
+│   └── segmentation_model.py
+├── eda_classification.ipynb
+├── segmentation_experiments.ipynb
 ├── requirements.txt
 └── README.md
 ```
+
+**File descriptions:**
+- `src/classification_model.py` — standalone script to train and evaluate the XGBoost classification model
+- `src/segmentation_model.py` — standalone script to run K-Means clustering and print cluster profiles
+- `eda_classification.ipynb` — notebook covering exploratory data analysis, feature engineering, feature selection, and full classification model training and evaluation
+- `segmentation_experiments.ipynb` — notebook covering hierarchical clustering and DBSCAN experiments used to validate the K-Means segmentation results
 
 ---
 
@@ -29,7 +37,7 @@ The dataset is **not included** in this repository and must be obtained separate
 - `census-bureau.data` — the raw dataset
 - `census-bureau.columns` — the column names file
 
-Once obtained, place both files inside the `data/` folder at the root of the project. The `data/` directory must exist before running either script. If it does not exist, create it manually:
+Once obtained, place both files inside the `data/` folder at the root of the project. The `data/` directory must exist before running either script or notebook. If it does not exist, create it manually:
 
 ```bash
 mkdir data
@@ -75,7 +83,7 @@ source venv/bin/activate
 
 **Windows:**
 ```bash
-source venv/Scripts/activate
+venv\Scripts\activate
 ```
 
 Once activated, your terminal prompt will show `(venv)` at the beginning.
@@ -88,9 +96,33 @@ pip install -r requirements.txt
 
 ---
 
-## Running the Classification Model
+## Running the Notebooks
 
-From the project root directory, run:
+The notebooks are the recommended starting point as they contain the full end-to-end workflow with explanations and visualizations.
+
+### EDA and Classification Notebook
+
+Open `eda_classification.ipynb` in Jupyter or VS Code and run all cells from top to bottom. This notebook covers exploratory data analysis including missing value analysis, correlation tests, and feature distributions, followed by feature engineering, feature selection, and full classification model training and evaluation across all models.
+
+```bash
+jupyter notebook eda_classification.ipynb
+```
+
+### Segmentation Experiments Notebook
+
+Open `segmentation_experiments.ipynb` and run all cells from top to bottom. This notebook covers hierarchical clustering and DBSCAN experiments used to validate and compare against the K-Means segmentation results.
+
+```bash
+jupyter notebook segmentation_experiments.ipynb
+```
+
+---
+
+## Running the Standalone Scripts
+
+The standalone scripts in `src/` can be run independently from the project root directory without Jupyter.
+
+### Classification Model
 
 ```bash
 python src/classification_model.py
@@ -99,18 +131,14 @@ python src/classification_model.py
 **Expected output:**
 The script will print progress updates as it loads and preprocesses the data, trains the XGBoost model, and evaluates it on the held-out test set. Final output includes a full classification report with precision, recall, and F1 scores for both classes, as well as the weighted ROC-AUC score.
 
----
-
-## Running the Segmentation Model
-
-From the project root directory, run:
+### Segmentation Model
 
 ```bash
 python src/segmentation_model.py
 ```
 
 **Expected output:**
-The script will print progress updates during preprocessing, PCA dimensionality reduction, and K-Means clustering. Silhouette scores for K=2 through K=9 will be printed to the terminal, followed by the cluster profile table showing mean statistics per segment. Two matplotlib plots will be displayed inline: a PCA scatter plot coloured by cluster assignment. Close each plot window to allow the script to continue.
+The script will print progress updates during preprocessing, PCA dimensionality reduction, and K-Means clustering. Silhouette scores for K=2 through K=9 will be printed to the terminal, followed by the cluster profile table showing mean statistics per segment. Matplotlib plots will be displayed inline showing the PCA scatter plot coloured by cluster assignment. Close each plot window to allow the script to continue.
 
 ---
 
@@ -143,13 +171,20 @@ Python 3.12.4 is not installed or not on your PATH. Download it from [https://ww
 brew install python@3.12
 ```
 
+**Jupyter is not found (`jupyter: command not found`)**
+
+Jupyter is not installed in your virtual environment. Install it with:
+```bash
+pip install jupyter
+```
+
 **Data files are not found (`FileNotFoundError: census-bureau.data`)**
 
-The script expects the data files at `../data/census-bureau.data` and `../data/census-bureau.columns` relative to the `src/` directory. Verify that both files exist in the `data/` folder at the project root and that the folder is named exactly `data` with no extra characters or spaces.
+The scripts expect the data files at `../data/census-bureau.data` and `../data/census-bureau.columns` relative to the `src/` directory, and the notebooks expect them at `../data/` relative to the project root. Verify that both files exist in the `data/` folder at the project root and that the folder is named exactly `data` with no extra characters or spaces.
 
 **Matplotlib plots do not display (headless / server environments)**
 
-If running in a headless environment where a display is not available, matplotlib may throw a backend error. To fix this, add the following two lines to the top of `segmentation.py`, before any other imports:
+If running in a headless environment where a display is not available, matplotlib may throw a backend error. To fix this, add the following two lines to the top of `segmentation_model.py`, before any other imports:
 ```python
 import matplotlib
 matplotlib.use('Agg')
